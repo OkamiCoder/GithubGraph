@@ -1,7 +1,7 @@
 # GithubGraph 📊
 
 <p>
-  <img src="./assets/banner.png" alt="project banner">
+  <img src="./assets/banner.png" alt="project banner" width="100%">
 </p>
 
 A sleek, animated Vue.js web application that visualizes a user's GitHub contribution history over the last 14 days using the GitHub Public Events API. It features custom reactive SVG spline charts with smooth line-drawing effects.
@@ -36,7 +36,7 @@ Since the project relies entirely on vanilla modern JavaScript modules and CDN-h
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com
+   git clone https://github.com/OkamiCoder/GithubGraph
    cd GithubGraph
    ```
 2. **Run the project:**
