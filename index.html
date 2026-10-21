@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="OkamiCoder">
+  <title>GithubGraph — пульс твоей активности</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+<base target="_blank">
+</head>
+<body class="min-h-screen">
+
+  <div id="app" class="min-h-screen flex flex-col items-center justify-center px-4 py-14 relative z-10">
+    <div class="w-full max-w-3xl">
+
+      <header class="text-center mb-10 fade-up">
+        <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight">
+          <span class="text-gradient">Github</span><span class="text-white">Graph</span>
+        </h1>
+        <p class="text-[#8b949e] mt-3 text-sm sm:text-base">
+          Введи ник — увидишь пульс публичной активности за 14 дней
+        </p>
+      </header>
+
+      <form @submit.prevent="load"
+            class="flex flex-col sm:flex-row gap-3 mb-4 fade-up"
+            style="animation-delay: .15s">
+        <input
+          v-model="username"
+          type="text"
+          placeholder="OkamiCoder"
+          spellcheck="false"
+          autocomplete="off"
+          class="flex-1 bg-[#161b22] border border-[#30363d] rounded-2xl px-5 py-3.5
+                 text-[#c9d1d9] placeholder-[#484f58] outline-none
+                 focus:border-[#39d353]/60 focus:ring-4 focus:ring-[#39d353]/10
+                 transition-all duration-300 text-sm sm:text-base" />
+        <button
+          type="submit"
+          :disabled="state === 'loading' || !username.trim()"
+          class="bg-[#238636] hover:bg-[#2ea043] active:scale-95 disabled:opacity-50
+                 disabled:cursor-not-allowed disabled:active:scale-100
+                 text-white font-semibold rounded-2xl px-7 py-3.5
+                 transition-all duration-300 shadow-lg shadow-[#238636]/25
+                 flex items-center justify-center gap-2 min-w-[150px]">
+          <svg v-if="state === 'loading'" class="spinner w-4 h-4" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" opacity=".25"/>
+            <path d="M22 12a10 10 0 0 0-10-10" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          {{ state === 'loading' ? 'Гружу…' : 'Показать' }}
+        </button>
+      </form>
+
+      <transition name="fade">
+        <div v-if="state === 'error'"
+             class="mb-6 bg-[#f85149]/10 border border-[#f85149]/40 text-[#ff7b72]
+                    rounded-2xl px-5 py-3.5 text-sm text-center">
+          {{ error }}
+        </div>
+      </transition>
+
+      <transition name="card">
+        <div v-if="state === 'done'"
+             class="card rounded-3xl border border-[#21262d] bg-[#0d1117]/90
+                    backdrop-blur p-6 sm:p-8">
+
+          <div class="flex items-center gap-4 mb-8 flex-wrap">
+            <img :src="user.avatar_url" :alt="user.login"
+                 class="w-14 h-14 rounded-full ring-2 ring-[#39d353]/40
+                        shadow-lg shadow-[#39d353]/20 avatar-pop" />
+            <div class="min-w-0">
+              <a :href="user.html_url" target="_blank" rel="noopener"
+                 class="text-white font-bold text-lg hover:text-[#39d353] transition-colors">
+                {{ user.name || user.login }}
+                <span class="text-[#8b949e] font-medium text-sm ml-1">@{{ user.login }}</span>
+              </a>
+              <p v-if="user.bio" class="text-[#8b949e] text-sm truncate max-w-[300px]">{{ user.bio }}</p>
+            </div>
+            <div class="ml-auto text-right">
+              <p class="text-3xl font-extrabold text-[#39d353] leading-none">{{ total }}</p>
+              <p class="text-[#8b949e] text-xs mt-1">событий за 14 дней</p>
+            </div>
+          </div>
+
+          <contribution-chart :daily="daily" />
+        </div>
+      </transition>
+
+      <footer class="text-center text-[#484f58] text-xs mt-10 fade-up" style="animation-delay: .3s">
+        данные — публичные события GitHub API · GithubGraph
+      </footer>
+    </div>
+  </div>
+
+  <script src="./js/api.js"></script>
+  <script src="./js/chart.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>

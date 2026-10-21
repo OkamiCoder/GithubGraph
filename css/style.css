@@ -1,0 +1,79 @@
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background:
+    radial-gradient(600px 400px at 15% 10%, rgba(35, 134, 54, .12), transparent 60%),
+    radial-gradient(700px 500px at 85% 85%, rgba(31, 111, 235, .10), transparent 60%),
+    #010409;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #39d353, #2ea043 60%, #1f6feb);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.line-anim {
+  animation: draw 1.2s cubic-bezier(.4, 0, .2, 1) forwards;
+}
+@keyframes draw {
+  to { stroke-dashoffset: 0; }
+}
+
+.area-anim {
+  opacity: 0;
+  animation: fadeIn .8s ease .9s forwards;
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+.dot {
+  opacity: 0;
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: pop .45s cubic-bezier(.34, 1.56, .64, 1) forwards;
+}
+@keyframes pop {
+  from { opacity: 0; transform: scale(0); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.avatar-pop {
+  animation: pop .5s cubic-bezier(.34, 1.56, .64, 1) .2s both;
+}
+
+.fade-up {
+  opacity: 0;
+  animation: fadeUp .7s ease forwards;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.card-enter-active { transition: all .6s cubic-bezier(.22, 1, .36, 1); }
+.card-enter-from   { opacity: 0; transform: translateY(24px) scale(.97); }
+
+.fade-enter-active, .fade-leave-active { transition: opacity .3s ease; }
+.fade-enter-from, .fade-leave-to { opacity: 0; }
+
+.card {
+  box-shadow:
+    0 0 0 1px rgba(63, 185, 80, .06),
+    0 20px 60px -15px rgba(35, 134, 54, .25),
+    0 8px 24px rgba(0, 0, 0, .5);
+}
+
+.axis-label {
+  fill: #484f58;
+  font-size: 10px;
+  font-family: 'Inter', sans-serif;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
