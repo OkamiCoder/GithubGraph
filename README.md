@@ -7,7 +7,7 @@
 A sleek, animated Vue.js web application that visualizes a user's GitHub contribution history over the last 14 days using the GitHub Public Events API. It features custom reactive SVG spline charts with smooth line-drawing effects.
 
 ## 🚀 Live Demo
-See the app in action here: [Live Preview](https://github.io) *(Replace this link after enabling GitHub Pages)*
+See the app in action here: [Live Preview](https://okamicoder.github.io/GithubGraph/) *(Replace this link after enabling GitHub Pages)*
 
 ## ✨ Features
 * **14-Day Activity Pulse:** Aggregates weighted GitHub public events (commits, PRs, issues, releases) into a daily timeline.
