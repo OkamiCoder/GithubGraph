@@ -16,7 +16,7 @@ See the app in action here: [Live Preview](https://okamicoder.github.io/GithubGr
 * **Vue.js Driven:** Clean reactive state management handling form validation, loading indicators, and asynchronous API calls.
 
 ## ⚠️ API Limitations & Edge Cases
-* **1000 Event Bound:** The GitHub API restricts fetching public events to the most recent 300–1000 events depending on pagination. If a user exceeds this activity threshold within 14 days, the API returns an empty dataset or breaks limits, resulting in an empty chart rendering.
+* **1000 Event Bound:** The GitHub API restricts fetching public events to the most recent 290–1000 events depending on pagination. If a user exceeds this activity threshold within 14 days, the API returns an empty dataset or breaks limits, resulting in an empty chart rendering.
 * **Rate Limits:** Standard unauthenticated browser requests are capped by GitHub API hourly limits. The app explicitly catches `403 Forbidden` statuses to inform users when limits are exhausted.
 
 ## 🛠️ Project Structure
